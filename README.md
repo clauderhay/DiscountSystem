@@ -4,6 +4,7 @@ A high-performance discount code generation and validation system built with .NE
 
 ## Features
 - Generate 1-2000 unique discount codes per request
+- gRPC API for high-performance communication
 
 ## Getting Started
 (Documentation will be updated as development progresses)

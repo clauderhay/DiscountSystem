@@ -7,9 +7,29 @@ A high-performance discount code generation and validation system built with .NE
 - Thread-safe concurrent request handling
 - Memory caching for improved performance
 - Bulk operations optimized for large code generation
+- gRPC API for high-performance communication
 
 ## Architecture
 (TBD)
 
 ## Getting Started
-(Documentation will be updated as development progresses)
+
+(Setup instructions will be added once implementation is complete)
+
+## Technical Implementation
+
+### Code Generation
+- Cryptographically secure random generation
+- 8-character alphanumeric codes
+- Pre-validation for uniqueness
+
+### Concurrency
+- SemaphoreSlim for thread-safe generation
+- Prevents race conditions
+
+### Performance
+- Bulk database operations
+- Memory caching for used codes
+- Optimized indexes
+
+--- test commit for user change ---

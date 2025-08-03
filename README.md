@@ -4,7 +4,12 @@ A high-performance discount code generation and validation system built with .NE
 
 ## Features
 - Generate 1-2000 unique discount codes per request
-- gRPC API for high-performance communication
+- Thread-safe concurrent request handling
+- Memory caching for improved performance
+- Bulk operations optimized for large code generation
+
+## Architecture
+(TBD)
 
 ## Getting Started
 (Documentation will be updated as development progresses)

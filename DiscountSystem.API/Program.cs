@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddGrpc();
+builder.Services.AddGrpcReflection();
 
 // Configure Entity Framework with PostgreSQL
 builder.Services.AddDbContext<DiscountDbContext>(options =>
@@ -30,6 +31,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline
 app.MapGrpcService<GrpcDiscountService>();
+app.MapGrpcReflectionService();
 
 // Add a simple HTTP endpoint for health checks
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client.");

@@ -23,7 +23,7 @@ public class DiscountCodeConfiguration : IEntityTypeConfiguration<DiscountCodeEn
             .IsUnique()
             .HasDatabaseName("UX_DiscountCodes_Code");
 
-        // SMART: Partial index - only index unused codes (PostgreSQL feature)
+        // Partial index - only index unused codes (PostgreSQL feature)
         builder.HasIndex(dc => new { dc.Code, dc.IsUsed })
             .HasFilter("\"IsUsed\" = false")
             .HasDatabaseName("IX_DiscountCodes_UnusedOnly");

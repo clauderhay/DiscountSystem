@@ -6,15 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DiscountSystem.Data.Repositories;
 
-public class DiscountCodeRepository : IDiscountCodeRepository
+public class DiscountCodeRepository (DiscountDbContext context) : IDiscountCodeRepository
 {
-    private readonly DiscountDbContext _context;
-
-    public DiscountCodeRepository(DiscountDbContext context)
-    {
-        _context = context ?? throw new ArgumentNullException(nameof(context));
-    }
-
+    private readonly DiscountDbContext _context = context ?? throw new ArgumentNullException(nameof(context));
+    
     public async Task<DiscountCode?> GetByCodeAsync(string code, CancellationToken ct = default)
     {
         var entity = await _context.DiscountCodes

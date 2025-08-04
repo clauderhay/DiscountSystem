@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.2" />
+    <PackageReference Include="FluentAssertions" Version="8.5.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.32.0-rc1" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.72.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.7" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\DiscountSystem.API\Protos\discount.proto" GrpcServices="Client" Link="Protos\discount.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiscountSystem.API\DiscountSystem.API.csproj" />
+    <ProjectReference Include="..\DiscountSystem.Client\DiscountSystem.Client.csproj" />
+  </ItemGroup>
+
+  <Target Name="CopyDepsJson" AfterTargets="Build">
+    <ItemGroup>
+      <DepsFile Include="$(ProjectDir)..\DiscountSystem.API\bin\$(Configuration)\$(TargetFramework)\DiscountSystem.API.deps.json" />
+    </ItemGroup>
+    <Copy SourceFiles="@(DepsFile)" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

@@ -8,6 +8,13 @@ A high-performance discount code generation and validation system built with .NE
 - Memory caching for improved performance
 - Bulk operations optimized for large code generation
 - gRPC API for high-performance communication
+- Comprehensive client with interactive UI
+- Production-ready with proper error handling and logging
+
+### Additional Features
+
+- **Stress Testing**: Test concurrent request handling
+- **Performance Metrics**: Measure response times and throughput
 
 ## Architecture
 
@@ -20,26 +27,54 @@ DiscountSystem/
 - |---API/ # gRPC API endpoints
 - |---Client/ # Interactive UI
 
+## Technology Stack
+
+- **.NET 8**: Latest LTS version
+- **gRPC**: High-performance RPC framework
+- **PostgreSQL**: Primary database (configurable)
+- **Entity Framework Core 8**: ORM with code-first migrations
+- **Docker**: Containerized database for easy setup
+- **Memory Cache**: Built-in ASP.NET Core caching
+
 ## Prerequisites
 
 - .NET 8 SDK
 - Docker (for PostgresSQL)
 - A gRPC client (like Postman, grpcurl, or the provided client)
 
-## Getting Started
+## Quick Start
 
-### 1. Start PostgresSQL Database
+### 1. Clone and Setup Database
 
-`docker-compose up -d`
+Clone the repository
+
+        git clone <https://github.com/clauderhay/DiscountSystem.git>
+
+        cd DiscountSystem
+
+Start PostgresSQL with Docker
+
+        docker-compose up -d
 
 ### 2. Run Database Migrations
 
-`cd DiscountSystem.API`
-`dotnet ef database update`
+        cd DiscountSystem.API
 
-### 3. Run the API
+        dotnet ef database update
 
-`dotnet run --project DiscountSystem.API`
+### 3. Start the API
+
+        cd DiscountSystem.API
+
+        dotnet run
+
+### 4. Run the Client
+
+In a new terminal
+
+        cd DiscountSystem.Client
+
+        dotnet run
 
 ### API Endpoints
 
@@ -53,6 +88,17 @@ DiscountSystem/
 
 - Request: code (string) - 8-character discount code
 - Response: result (uint32) - 0 for success, 1 for failure
+
+### Stress Test Results
+
+Example stress test with 2 concurrent requests generating 100 codes each:
+
+=== Stress Test Results ===
+- Total time: 155ms
+- Successful requests: 2
+- Failed requests: 0
+- Average time per request: 77ms
+- Codes generated per second: 1290
 
 ## Technical Implementation
 
@@ -70,38 +116,6 @@ DiscountSystem/
 - Memory caching for used codes
 - Optimized indexes
 
-# Discount System Client
-
-A gRPC client for testing the Discount Code Generation System.
-
-## Features
-
-- **Generate Codes**: Create 1-2000 unique discount codes
-- **Use Codes**: Validate and mark codes as used
-
-### Additional Features
-
-- **Stress Testing**: Test concurrent request handling
-- **Performance Metrics**: Measure response times and throughput
-
-
-## Usage
-
-1. Ensure the API is running on `http://localhost:5000`
-2. Run the client: `dotnet run`
-3. Follow the interactive menu
-
-### Stress Test Results
-
-Example stress test with 2 concurrent requests generating 100 codes each:
-
-=== Stress Test Results ===
-- Total time: 155ms
-- Successful requests: 2
-- Failed requests: 0
-- Average time per request: 77ms
-- Codes generated per second: 1290
-
 ## View DB Data from Postgres (using docker)
 
-`docker exec -it discount_postgres psql -U discount_user -d discount_db -c "SELECT * FROM \"DiscountCodes\" ORDER BY \"CreatedAt\" DESC;"`
+    docker exec -it discount_postgres psql -U discount_user -d discount_db -c "SELECT * FROM \"DiscountCodes\" ORDER BY \"CreatedAt\" DESC;"

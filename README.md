@@ -58,13 +58,13 @@ Start PostgresSQL with Docker
 
 ### 2. Run Database Migrations
 
-        cd DiscountSystem.API
+        cd src/DiscountSystem.API
 
         dotnet ef database update
 
 ### 3. Start the API
 
-        cd DiscountSystem.API
+        cd src/DiscountSystem.API
 
         dotnet run
 
@@ -72,7 +72,7 @@ Start PostgresSQL with Docker
 
 In a new terminal
 
-        cd DiscountSystem.Client
+        cd src/DiscountSystem.Client
 
         dotnet run
 

@@ -14,10 +14,11 @@ A high-performance discount code generation and validation system built with .NE
 The solution follows Clean Architecture principles:
 
 DiscountSystem/
-|---Core/ # Domain models and interface
-|---Services/ # Business logic implementation
-|---Data/ # Data access layer with EF Core
-|---API/ # gRPC API endpoints
+- |---Core/ # Domain models and interface
+- |---Services/ # Business logic implementation
+- |---Data/ # Data access layer with EF Core
+- |---API/ # gRPC API endpoints
+- |---Client/ # Interactive UI
 
 ## Prerequisites
 
@@ -78,11 +79,28 @@ A gRPC client for testing the Discount Code Generation System.
 - **Generate Codes**: Create 1-2000 unique discount codes
 - **Use Codes**: Validate and mark codes as used
 
+### Additional Features
+
+- **Stress Testing**: Test concurrent request handling
+- **Performance Metrics**: Measure response times and throughput
+
+
 ## Usage
 
 1. Ensure the API is running on `http://localhost:5000`
 2. Run the client: `dotnet run`
 3. Follow the interactive menu
+
+### Stress Test Results
+
+Example stress test with 2 concurrent requests generating 100 codes each:
+
+=== Stress Test Results ===
+- Total time: 155ms
+- Successful requests: 2
+- Failed requests: 0
+- Average time per request: 77ms
+- Codes generated per second: 1290
 
 ## View DB Data from Postgres (using docker)
 

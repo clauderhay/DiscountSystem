@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DiscountSystem.Services\DiscountSystem.Services.csproj" />
+        <ProjectReference Include="..\..\src\DiscountSystem.Services\DiscountSystem.Services.csproj" />
     </ItemGroup>
 
 </Project>

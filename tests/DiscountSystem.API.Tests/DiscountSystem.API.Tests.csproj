@@ -32,15 +32,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DiscountSystem.API\DiscountSystem.API.csproj" />
-    <ProjectReference Include="..\DiscountSystem.Client\DiscountSystem.Client.csproj" />
+    <ProjectReference Include="..\..\src\DiscountSystem.API\DiscountSystem.API.csproj" />
+    <ProjectReference Include="..\..\src\DiscountSystem.Client\DiscountSystem.Client.csproj" />
   </ItemGroup>
-
-  <Target Name="CopyDepsJson" AfterTargets="Build">
-    <ItemGroup>
-      <DepsFile Include="$(ProjectDir)..\DiscountSystem.API\bin\$(Configuration)\$(TargetFramework)\DiscountSystem.API.deps.json" />
-    </ItemGroup>
-    <Copy SourceFiles="@(DepsFile)" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
-  </Target>
 
 </Project>

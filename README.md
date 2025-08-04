@@ -21,11 +21,18 @@ A high-performance discount code generation and validation system built with .NE
 The solution follows Clean Architecture principles:
 
 DiscountSystem/
-- |---Core/ # Domain models and interface
-- |---Services/ # Business logic implementation
-- |---Data/ # Data access layer with EF Core
-- |---API/ # gRPC API endpoints
-- |---Client/ # Interactive UI
+
+src /
+- |---API /
+- |---Client/
+- |---Core/
+- |---Data/
+- |---Services/
+
+tests /
+- |---API.Tests/
+- |---Services.Tests/
+
 
 ## Technology Stack
 

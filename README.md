@@ -10,11 +10,48 @@ A high-performance discount code generation and validation system built with .NE
 - gRPC API for high-performance communication
 
 ## Architecture
-(TBD)
+
+The solution follows Clean Architecture principles:
+
+DiscountSystem/
+|---Core/ # Domain models and interface
+|---Services/ # Business logic implementation
+|---Data/ # Data access layer with EF Core
+|---API/ # gRPC API endpoints
+
+## Prerequisites
+
+- .NET 8 SDK
+- Docker (for PostgresSQL)
+- A gRPC client (like Postman, grpcurl, or the provided client)
 
 ## Getting Started
 
-(Setup instructions will be added once implementation is complete)
+### 1. Start PostgresSQL Database
+
+`docker-compose up -d`
+
+### 2. Run Database Migrations
+
+`cd DiscountSystem.API`
+`dotnet ef database update`
+
+### 3. Run the API
+
+`dotnet run --project DiscountSystem.API`
+
+### API Endpoints
+
+#### gRPC Service: Discount
+##### GenerateCodes
+
+- Request: count (uint32) — Number of codes to generate (1–2000)
+- Response: result (bool) - Success/failure
+
+##### UseCode
+
+- Request: code (string) - 8-character discount code
+- Response: result (uint32) - 0 for success, 1 for failure
 
 ## Technical Implementation
 
@@ -32,4 +69,21 @@ A high-performance discount code generation and validation system built with .NE
 - Memory caching for used codes
 - Optimized indexes
 
---- test commit for user change ---
+# Discount System Client
+
+A gRPC client for testing the Discount Code Generation System.
+
+## Features
+
+- **Generate Codes**: Create 1-2000 unique discount codes
+- **Use Codes**: Validate and mark codes as used
+
+## Usage
+
+1. Ensure the API is running on `http://localhost:5000`
+2. Run the client: `dotnet run`
+3. Follow the interactive menu
+
+## View DB Data from Postgres (using docker)
+
+`docker exec -it discount_postgres psql -U discount_user -d discount_db -c "SELECT * FROM \"DiscountCodes\" ORDER BY \"CreatedAt\" DESC;"`

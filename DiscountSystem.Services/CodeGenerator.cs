@@ -13,7 +13,7 @@ public class CodeGenerator : ICodeGenerator
         RandomNumberGenerator.Fill(buffer);
         
         var result = new  char[8];
-        for (int i = 0; i < 8; i++)
+        for (var i = 0; i < 8; i++)
         {
             result[i] = Characters[(buffer[i] % Characters.Length)];
         }
